@@ -1,8 +1,8 @@
-@import './../../../styles/variables.css';
+@import 'variables.css';
 
 .chat_card {
     display: flex;
-    width: 320px;
+    width: 21vw;
     height: 70px;
     background: var(--color-primary);
     padding: 10px;
@@ -11,15 +11,18 @@
 }
 
 .text_area {
-    width: 170px;
+    width: 70%;
     margin: 0 10px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 }
 
 .message_status {
     margin-left: auto;
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;  
 }
 
 .unread_messages {
