@@ -10,7 +10,7 @@
 
 .messages_container {
     width: 100%;
-    height: 800px;
+    height: 810px;
     overflow-y: auto;
     padding: 20px 300px;
     scrollbar-width: 0;

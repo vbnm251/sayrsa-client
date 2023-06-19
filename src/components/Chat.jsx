@@ -5,19 +5,12 @@ import MessageInput from './MessageInput';
 
 const Chat = () => {
     const messages = [
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
+        
     ]
 
     /*TODO: add unique key*/
+
+    const mes = {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'};
 
     return ( 
         <div className='chat'>
@@ -25,6 +18,7 @@ const Chat = () => {
                 {messages.map(message =>
                     <Message message={message}/>
                 )}
+                <Message message={mes} self />
             </div>
             <div className='input__messages'>
                 <MessageInput/> 
