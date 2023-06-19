@@ -1,9 +1,9 @@
-@import 'variables.css';
+@import '../../../styles/variables.css';
 
 .chat_card {
     display: flex;
-    width: 21vw;
-    height: 70px;
+    width: 400px;
+    height: 80px;
     background: var(--color-primary);
     padding: 10px;
     align-items: center;
@@ -39,13 +39,14 @@
 }
 
 .avatar {
-    height: 40px;
-    width: 40px;
+    height: 44px;
+    width: 44px;
     border: 1px solid var(--color-secondary);
     border-radius: 50%;
-    background: var(--color-onPrimary);
+    background: transparent;
 }
 
 .chat_card span, .chat_card h3 {
     color : var(--color-onPrimary);
+    font-size: 18px;
 }

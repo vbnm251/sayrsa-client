@@ -1,0 +1,18 @@
+@import '../../../styles/variables.css';
+
+.btn {
+    width: 80px;
+    height: 100%;
+    margin-left: 2px;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    color : var(--color-onPrimary);
+    border: 2px solid var(--color-borders);
+    cursor: pointer;
+    right: 1rem;    
+    transition: .3s;
+}
+
+.btn:hover {
+    border-color: var(--color-secondary);
+}

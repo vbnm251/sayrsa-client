@@ -1,10 +1,10 @@
 import React from 'react';
-import cl from '../styles/ChatCard.module.css'
+import cl from './ChatCard.module.css'
 import moment from 'moment';
-import { parseDate } from '../utils/date';
+import { parseDate } from '../../../utils/date';
 
 const ChatCard = ({conversation, ...props}) => {
-    let lastMessageText = 'Нет сообщений';
+    let lastMessageText = '* no messages *    ';
     let sendTime = moment().format('HH:mm').toString();
 
     if (typeof conversation.lastMessage !== 'undefined'){

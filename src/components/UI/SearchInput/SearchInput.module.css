@@ -1,0 +1,19 @@
+@import '../../../styles/variables.css';
+
+.group {
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    width: 400px;
+    margin: 10px 0;
+}
+   
+.icon {
+    position: absolute;
+    left: 1rem;
+    fill: var(--color-placeholder);
+    width: 1rem;
+    height: 1rem;
+}
+   

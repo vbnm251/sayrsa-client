@@ -1,0 +1,52 @@
+@import '../../../styles/variables.css';
+
+.container {
+    max-width: 600px;
+    width: fit-content;
+}
+
+.message_line {
+    margin: 30px 0;
+    display: flex;
+}
+
+.self {
+    justify-content: flex-end;
+}
+
+.not_self {
+    justify-content: flex-start;
+}
+
+.message {
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 20px;
+    overflow-wrap: break-word;
+    color: var(--color-onPrimary);
+}
+
+.send_time {
+    width: 100%;
+    margin-top: 2px;
+    font-size: 16px;
+    font-weight: lighter;
+    text-align: end;
+}
+
+.sender {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 22px;
+    text-align: end;
+}
+
+.self_message {
+    background-color: var(--color-selfMessage);
+    border-bottom-right-radius: 0;
+}
+
+.not_self_message {
+    background-color: var(--color-message);
+    border-bottom-left-radius: 0;
+}

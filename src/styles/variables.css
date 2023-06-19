@@ -3,4 +3,9 @@
     --color-secondary: teal;
     --color-onPrimary: black;
     --color-onSecondary: white;
+    --color-placeholder: #9e9ea7;
+    --color-borders: #9e9ea7;
+    --color-message : #cac6c6;
+    --color-selfMessage: #E4F8F0;
+    --color-background: white;
 }
