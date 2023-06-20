@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import ChatCard from './UI/ChatCard/ChatCard';
 import Search from './UI/SearchInput/SearchInput';
 import { useConversations } from '../hooks/useConversations';
-import settings from './../assets/settings.svg';
 import './../styles/list.css'
+import Convbar from './Convbar';
 
 const ConversationList = ({conv}) => {
 
@@ -12,20 +12,15 @@ const ConversationList = ({conv}) => {
 
     return ( 
         <div className='list'>
-            <div className='appbar'>
-                <h1>Conversations</h1>
-                <img 
-                    src={settings} 
-                    alt='dfjglkhdj'
-                    onClick={() => console.log('clicked')}>         
-                </img>
-            </div>
+            <Convbar/>
+
             <Search
                 value = {searchQuery}
                 onChange = {e => setSearchQuery(e.target.value)}
                 placeholder = {"Search"}
                 type = "text"
             />
+            
             <div className='conv_list'>
                 {conversations.length === 0
                     ?

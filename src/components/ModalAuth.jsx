@@ -1,29 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/modal.css';
 import '../styles/app.css'
-import Input from './UI/Input/Input';
-import Button from './UI/Button/Button';
+import Switch from './UI/Switch/Switch';
+import Login from './Login';
+import Register from './Register';
 
 const ModalAuth = ({setAuthed}) => {
 
-    function login() {
+    const [loginscreen, setLoginscreen] = useState(false);
+
+    function passAuth() {
         setAuthed(true)
     }
 
     return ( 
         <div className='modal modal__active'>
-            <div className='modal__content'>
-                <Input
-                    placeholder= "Username"
-                    type = "text"
-                />
-                <Input
-                    placeholder = "Password"
-                    type = "password"
-                />
-                <div className='center-element__container' style={{marginTop: '10px'}}>
-                    <Button onClick={login}>Login</Button>
+            <div className='modal__content' style={{width: '500px'}}>
+
+                <div className='center-element-horizontal__container' style={{margin: '10px 0', display: 'flex'}}>
+                    <span>Register</span>
+                    <Switch onChange={e => setLoginscreen(e.target.checked)}/>
+                    <span>Login</span>
                 </div>
+                
+                {loginscreen
+                    ?
+                    <Login login={passAuth}/>
+                    :
+                    <Register register={passAuth}/>
+                }
+                
             </div>
         </div>
      );

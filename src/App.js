@@ -3,6 +3,7 @@ import './styles/app.css'
 import ConversationList from './components/ConversationList';
 import Chat from './components/Chat';
 import ModalAuth from './components/ModalAuth';
+import UserInfo from './components/UserInfo';
 
 function App() {
   const [conv, ] = useState([
@@ -12,6 +13,7 @@ function App() {
   ])
 
   const [authed, setAuthed] = useState(false);
+  const [isUserInfoOpened, setIsUserInfoOpeneed] = useState(false);
   
   if (!authed) {
     return (
@@ -22,7 +24,10 @@ function App() {
   return (
    <div className='App'>
     <ConversationList conv={conv}/>
-    <Chat/>
+    <Chat openInfo={() => setIsUserInfoOpeneed(true)}/>
+    { isUserInfoOpened &&
+      <UserInfo closeInfo={() => setIsUserInfoOpeneed(false)}/>
+    }
    </div>
   );
 }

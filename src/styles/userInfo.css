@@ -1,0 +1,15 @@
+@import './variables.css';
+
+.info {
+    height: 900px;
+    width: 800px;
+    border-radius: 16px  0 0 16px;
+    box-shadow: 0px 0px 2px 2px lightgray;
+}
+
+.info img {
+    height: 20px;
+    width: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
