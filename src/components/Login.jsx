@@ -1,23 +1,41 @@
 import React from 'react';
 import Input from './UI/Input/Input';
 import Button from './UI/Button/Button';
+import AuthService from '../api/AuthService';
+import { observer } from 'mobx-react-lite';
+import { useStores } from '../hooks/useStores';
 
-const Login = ({login}) => {
+const Login = observer((props) => {
+
+    const { login } = useStores()
+
     return ( 
         <div>
-            <Input
+            { login.isLoading 
+            ?
+            <h1>Loading...</h1>
+            :
+            <div>
+                <Input
+                value = {login.username}
+                onChange = {(e) => login.setUsername(e.target.value)}
                 placeholder= "Username"
                 type = "text"
-            />
-            <Input
-                placeholder = "Password"
-                type = "password"
-            />
-            <div className='center-element-horizontal__container' style={{marginTop: '10px'}}>
-                <Button onClick={login}>Login</Button>
+                />
+                <Input
+                    value = {login.password}
+                    onChange = {(e) => login.setPassword(e.target.value)}
+                    placeholder = "Password"
+                    type = "password"
+                />
+                <div className='center-element-horizontal__container' style={{marginTop: '10px'}}>
+                    <Button onClick={login.makeLogin}>Login</Button>
+                </div>
             </div>
+            }
+            
         </div>
      );
-}
+});
  
 export default Login;

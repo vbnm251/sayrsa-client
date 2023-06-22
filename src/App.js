@@ -4,6 +4,8 @@ import ConversationList from './components/ConversationList';
 import Chat from './components/Chat';
 import ModalAuth from './components/ModalAuth';
 import UserInfo from './components/UserInfo';
+import { RootStoreContext, StoreContext } from './context';
+import RootStore from './store/rootStore';
 
 function App() {
   const [conv, ] = useState([
@@ -14,21 +16,23 @@ function App() {
 
   const [authed, setAuthed] = useState(false);
   const [isUserInfoOpened, setIsUserInfoOpeneed] = useState(false);
-  
-  if (!authed) {
-    return (
-      <ModalAuth setAuthed={setAuthed}/> 
-    )
-  }
 
   return (
-   <div className='App'>
-    <ConversationList conv={conv}/>
-    <Chat openInfo={() => setIsUserInfoOpeneed(true)}/>
-    { isUserInfoOpened &&
-      <UserInfo closeInfo={() => setIsUserInfoOpeneed(false)}/>
-    }
-   </div>
+    <RootStoreContext.Provider value={new RootStore()}>
+      { authed
+        ?
+        <div className='App'>
+          <ConversationList conv={conv}/>
+          <Chat openInfo={() => setIsUserInfoOpeneed(true)}/>
+          { isUserInfoOpened &&
+            <UserInfo closeInfo={() => setIsUserInfoOpeneed(false)}/>
+          }
+        </div>
+        :
+        <ModalAuth setAuthed={setAuthed}/> 
+      }
+      
+    </RootStoreContext.Provider>
   );
 }
 

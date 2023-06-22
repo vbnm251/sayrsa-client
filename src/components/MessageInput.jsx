@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from './UI/Input/Input';
 import Button from './UI/Button/Button';
+import '../styles/chat.css'
 
 const MessageInput = () => {
     
@@ -11,16 +12,18 @@ const MessageInput = () => {
     const height = '50px';
 
     return (  
-        <form>
-            <Input
-                placeholder = "Enter your message"
-                style= {{width: '600px', height: height}}
-            />
-            <Button
-                style = {{height : height}}
-                onClick = {sendMessage}
-            >Send</Button>
-        </form>
+        <div className='input__messages'>
+            <form >
+                <Input
+                    placeholder = "Enter your message"
+                    style= {{width: '600px', height: height}}
+                />
+                <Button
+                    style = {{height : height}}
+                    onClick = {sendMessage}
+                >Send</Button>
+            </form>
+        </div>
     );
 }
  

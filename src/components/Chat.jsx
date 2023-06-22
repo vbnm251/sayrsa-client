@@ -6,18 +6,7 @@ import Chatbar from './Chatbar';
 
 const Chat = ({openInfo}) => {
     const messages = [
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
-        {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'},
     ]
-
-    /*TODO: add unique key*/
 
     const mes = {sender : 'vbnm251', text : 'heii', sendDate : '2023-06-18T16:01:28.346423Z'};
 
@@ -31,10 +20,8 @@ const Chat = ({openInfo}) => {
                 )}
                 <Message message={mes} self />
             </div>
-
-            <div className='input__messages'>
-                <MessageInput/> 
-            </div>
+                    
+            <MessageInput/> 
         </div>
      );
 }
