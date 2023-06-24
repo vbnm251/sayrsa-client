@@ -4,7 +4,7 @@ import ConversationList from './components/ConversationList';
 import Chat from './components/Chat';
 import ModalAuth from './components/ModalAuth';
 import UserInfo from './components/UserInfo';
-import { RootStoreContext, StoreContext } from './context';
+import { RootStoreContext } from './context/context';
 import RootStore from './store/rootStore';
 
 function App() {

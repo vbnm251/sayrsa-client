@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { RootStoreContext} from "../context"
+import { RootStoreContext} from "../context/context"
 
 export const useStores = () => {
     const ctx = useContext(RootStoreContext)

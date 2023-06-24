@@ -1,7 +1,7 @@
 import LoginStore from "./login"
 
 class RootStore {
-    login = LoginStore
+    login = new LoginStore()
 }
 
 export default RootStore

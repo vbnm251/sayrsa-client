@@ -14,4 +14,20 @@ export default class AuthService {
         return responce
     }
 
+    static async register(username, password, bio, publicKey, privateKey) {
+        const responce = await axios.post("http://localhost:8080/auth/sign-up", {
+            username : username,
+            password : password,
+            bio : bio,
+            publicKey : publicKey,
+            privateKey : privateKey
+        }, {
+            headers : {
+                'Content-Type': '"application/json',
+            }
+        })
+
+        return responce
+    }
+
 }

@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx"
+import { makeAutoObservable } from "mobx"
 import AuthService from "../api/AuthService"
 
 class LoginStore {
@@ -38,6 +38,7 @@ class LoginStore {
             this.setIsLoading(false);
         }
     }
+        
 }
 
-export default new LoginStore()
+export default LoginStore

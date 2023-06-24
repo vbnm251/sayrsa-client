@@ -21,3 +21,8 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.error-text {
+    margin: 10px 0;
+    color: var(--color-error)
+}
