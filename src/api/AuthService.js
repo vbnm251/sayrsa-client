@@ -1,8 +1,9 @@
 import axios from "axios";
+import { server } from "..";
 
 export default class AuthService {
     static async login(username, password) {
-        const responce = await axios.post("http://localhost:8080/auth/sign-in", {
+        const responce = await axios.post(`${server}/auth/sign-in`, {
             username : username,
             password : password,
         }, {
@@ -15,7 +16,7 @@ export default class AuthService {
     }
 
     static async register(username, password, bio, publicKey, privateKey) {
-        const responce = await axios.post("http://localhost:8080/auth/sign-up", {
+        const responce = await axios.post(`${server}/auth/sign-up`, {
             username : username,
             password : password,
             bio : bio,

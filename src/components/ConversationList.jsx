@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import ChatCard from './UI/ChatCard/ChatCard';
 import Search from './UI/SearchInput/SearchInput';
 import { useConversations } from '../hooks/useConversations';
 import './../styles/list.css'
 import Convbar from './Convbar';
+import { observer } from 'mobx-react-lite';
+import { useStores } from '../hooks/useStores';
 
-const ConversationList = ({conv}) => {
+const ConversationList = observer(() => {
 
-    const [searchQuery, setSearchQuery] = useState('');
-    const conversations = useConversations(conv, searchQuery);
+    const { conv } = useStores()
+
+    const conversations = useConversations(conv.conversations, conv.searchQuery)
+
+    useEffect(() => {
+        conv.setConversations()
+        console.log('fetched conversations')
+    }, [])
 
     return ( 
         <div className='list'>
             <Convbar/>
 
             <Search
-                value = {searchQuery}
-                onChange = {e => setSearchQuery(e.target.value)}
-                placeholder = {"Search"}
+                value = {conv.searchQuery}
+                onChange = {e => conv.setSearchQuery(e.target.value)}
+                placeholder = "Search"
                 type = "text"
             />
             
@@ -29,7 +37,7 @@ const ConversationList = ({conv}) => {
                     </h1>
                     : 
                     <div>
-                        {conversations.map(conv =>
+                        {conversations.map(conv => 
                             <ChatCard conversation={conv} key={conv.conv_id}/>
                         )}
                     </div>
@@ -37,6 +45,6 @@ const ConversationList = ({conv}) => {
             </div>
         </div>
      );
-}
+})
  
 export default ConversationList;

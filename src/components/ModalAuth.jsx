@@ -5,12 +5,12 @@ import Switch from './UI/Switch/Switch';
 import Login from './Login';
 import Register from './Register';
 
-const ModalAuth = ({setAuthed}) => {
+const ModalAuth = ({passAuth}) => {
 
     const [loginscreen, setLoginscreen] = useState(false);
 
-    function passAuth() {
-        setAuthed(true)
+    function makeAuth() {
+        passAuth(true)
     }
 
     return ( 
@@ -25,9 +25,9 @@ const ModalAuth = ({setAuthed}) => {
                 
                 {loginscreen
                     ?
-                    <Login login={passAuth}/>
+                    <Login makeAuth={makeAuth}/>
                     :
-                    <Register register={passAuth}/>
+                    <Register makeAuth={makeAuth}/>
                 }
                 
             </div>

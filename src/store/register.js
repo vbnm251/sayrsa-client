@@ -1,28 +1,16 @@
-import { action, makeAutoObservable, makeObservable, observable, runInAction } from "mobx"
-import AuthService from "../api/AuthService"
+import {  makeAutoObservable, runInAction } from "mobx"
+import AuthService from "../api/AuthService";
+import { informationService } from "../api/InformationService";
 
-class Register {
-    username = ''
-    password
-    bio = ''
-    error = ''
-    isLoading = ''
-
-    publicKey = ''
-    privateKey = ''
+class RegisterStore {
+    username = '';
+    password = '';
+    bio = '';
+    error = '';
+    isLoading = false;
 
     constructor() {
-        makeObservable(this, {
-            username: observable,
-            password: observable,
-            bio: observable,
-            error: observable,
-            isLoading : observable,
-            setUsername: action,
-            setPassword: action,
-            setBio: action,
-            register: action,
-        })
+        makeAutoObservable(this)
     }
 
     setUsername = (username) => {
@@ -37,12 +25,13 @@ class Register {
         this.bio = bio
     }
 
-    
-
-    register = async () => {
+    makeRegistration = async (publicKey, privateKey) => {
         try {
             runInAction(() => {this.isLoading = true})
-            const responce = await AuthService.register(this.username, this.password, this.bio, this.publicKey, this.privateKey)
+            const responce = await AuthService.register(
+                this.username, this.password, this.bio, publicKey, privateKey
+            )
+            informationService.updateToken(responce.data.token) 
         } catch(e) {
             runInAction(() => {this.error = e.message})
         } finally {
@@ -51,4 +40,4 @@ class Register {
     }
 }
 
-export default Register
+export default RegisterStore

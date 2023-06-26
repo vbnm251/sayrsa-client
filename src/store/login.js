@@ -1,5 +1,7 @@
 import { makeAutoObservable } from "mobx"
 import AuthService from "../api/AuthService"
+import { rsaModlue } from "../utils/rsa";
+import { informationService } from "../api/InformationService";
 
 class LoginStore {
     username = '';
@@ -28,10 +30,13 @@ class LoginStore {
     }
 
     makeLogin = async () => {
+        this.setError('')
         try{
             this.setIsLoading(true);
             const responce = await AuthService.login(this.username, this.password);
-            console.log(responce);
+            const data = responce.data;
+            rsaModlue.setPrivateKey(data.privateKey)
+            informationService.updateToken(data.token)
         } catch(e) {
             this.setError(e.message);
         } finally {

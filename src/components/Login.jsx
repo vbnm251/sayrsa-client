@@ -4,9 +4,16 @@ import Button from './UI/Button/Button';
 import { observer } from 'mobx-react-lite';
 import { useStores } from '../hooks/useStores';
 
-const Login = observer((props) => {
+const Login = observer(({makeAuth}) => {
 
     const { login } = useStores()
+
+    async function passAuth() {
+        await login.makeLogin()
+        if (login.error === '') {
+            makeAuth()
+        }
+    }
 
     return ( 
         <div>
@@ -17,13 +24,13 @@ const Login = observer((props) => {
             <div>
                 <Input
                     value = {login.username}
-                    onChange = {(e) => login.setUsername(e.target.value)}
+                    onChange = {e => login.setUsername(e.target.value)}
                     placeholder= "Username"
                     type = "text"
                 />
                 <Input
                     value = {login.password}
-                    onChange = {(e) => login.setPassword(e.target.value)}
+                    onChange = {e=> login.setPassword(e.target.value)}
                     placeholder = "Password"
                     type = "password"
                 />
@@ -31,7 +38,7 @@ const Login = observer((props) => {
                     <span className='error-text center-element-horizontal__container'>{login.error}</span>
                 }
                 <div className='center-element-horizontal__container' style={{marginTop: '10px'}}>
-                    <Button onClick={login.makeLogin}>Login</Button>
+                    <Button onClick={passAuth}>Login</Button>
                 </div>
             </div>
             }
