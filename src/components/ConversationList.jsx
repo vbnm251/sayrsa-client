@@ -6,17 +6,19 @@ import './../styles/list.css'
 import Convbar from './Convbar';
 import { observer } from 'mobx-react-lite';
 import { useStores } from '../hooks/useStores';
+import { wsManager } from '../api/WebsocketService';
 
 const ConversationList = observer(() => {
 
-    const { conv } = useStores()
-
-    const conversations = useConversations(conv.conversations, conv.searchQuery)
-
+    const { conv, chat } = useStores()
+    
     useEffect(() => {
         conv.setConversations()
         console.log('fetched conversations')
-    }, [])
+
+        wsManager.connect(chat, conv)
+
+    }, [conv])
 
     return ( 
         <div className='list'>
@@ -30,15 +32,15 @@ const ConversationList = observer(() => {
             />
             
             <div className='conv_list'>
-                {conversations.length === 0
+                {conv.searchedConversations.length === 0
                     ?
                     <h1 className='no_conv'>
                         No conversations
                     </h1>
                     : 
                     <div>
-                        {conversations.map(conv => 
-                            <ChatCard conversation={conv} key={conv.conv_id}/>
+                        {conv.searchedConversations.map(conv => 
+                            <ChatCard conversation={conv} key={conv.conv_id} onclick={() => chat.openConversation(conv)}/>
                         )}
                     </div>
                 }

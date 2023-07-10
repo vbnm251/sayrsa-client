@@ -3,7 +3,7 @@ import { informationService } from "../api/InformationService";
 
 class ConversationStore {
     conversations = [];
-    searchQuery = ''
+    searchQuery = '';
     isLoading = false;
     error = ''
 
@@ -13,6 +13,15 @@ class ConversationStore {
 
     setSearchQuery(value) {
         this.searchQuery = value;
+    }
+
+    addConversation(conversation) {
+        this.conversations.push(conversation)
+        console.log(this.conversations);
+    }
+
+    get searchedConversations() {
+        return this.conversations.filter(conv => conv.title.toLowerCase().includes(this.searchQuery));
     }
 
     async setConversations() {

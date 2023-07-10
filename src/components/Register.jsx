@@ -1,7 +1,6 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import Input from './UI/Input/Input';
 import Button from './UI/Button/Button';
-import { rsaModlue } from '../utils/rsa';
 import { useStores } from '../hooks/useStores';
 import { observer } from 'mobx-react-lite';
 
@@ -9,7 +8,7 @@ const Register  = observer(({makeAuth}) => {
     const { register } = useStores()
 
     async function passAuth() {
-        await register.makeRegistration(rsaModlue.getPublicKey(), rsaModlue.getPrivateKey())
+        await register.makeRegistration()
         if (register.error === '') {
             makeAuth()
         }

@@ -1,15 +1,24 @@
-import { makeAutoObservable } from "mobx";
+import { action, makeObservable, observable, runInAction } from "mobx";
+import { informationService } from "../api/InformationService";
 
 class ChatStore {
-    title = '';
     messages = [];
     isLoading = false;
     infoOpened = false;
+    
+    title = '';
     members = [];
     messagesAmount = 0;
 
     constructor() {
-        makeAutoObservable(this)
+        makeObservable(this, {
+            messages : observable,
+            isLoading : observable,
+            infoOpened : observable,
+            openInfo : action,
+            closeInfo : action,
+            openConversation : action,
+        })
     }
 
     openInfo() {
@@ -20,11 +29,33 @@ class ChatStore {
         this.infoOpened = false;
     }
 
-    openConversation(conversation) {
-        this.title = conversation.title;
-        this.members = conversation.members;
-        this.messagesAmount = conversation.lastMessage.id;
-        //call for messages
+    updateAmount() {
+        this.messagesAmount+=1;
+    }
+
+    async sendMessage(messageText) {
+        // for user in members : 
+        //    encrypt message and add it to data
+        // send data to ws
+    }
+
+    /* TODO : add observer */
+
+    async openConversation(conversation) {
+        try {
+            runInAction(() => this.isLoading = true)
+            const resp = await informationService.getMessages(conversation.conv_id, conversation.lastMessage.id)
+            runInAction(() => {
+                this.messages = resp.data.messages
+                this.title = conversation.title;
+                this.members = conversation.members;
+                this.messagesAmount = conversation.lastMessage.id;
+            })
+        } catch(e) {
+            runInAction(() => this.error = e.message)
+        } finally {
+            runInAction(() => this.isLoading = false)
+        } 
     }
 
     /* 

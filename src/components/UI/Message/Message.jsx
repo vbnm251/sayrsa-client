@@ -1,9 +1,12 @@
 import React from 'react';
 import cl from './Message.module.css'
 import { parseDate } from '../../../utils/date';
+import { rsaModlue } from '../../../utils/rsa';
 
 const Message = ({message, self}) => {
     const sendDate = parseDate(message.sendDate);
+
+    //message.text = rsaModlue.decrypt(message.text)
 
     if (self) {
         return ( 

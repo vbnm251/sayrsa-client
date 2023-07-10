@@ -2,12 +2,12 @@ import React from 'react';
 import cl from './ChatCard.module.css'
 import moment from 'moment';
 import { parseDate } from '../../../utils/date';
-import { useStores } from '../../../hooks/useStores';
+//import { useStores } from '../../../hooks/useStores';
 
 const ChatCard = ({conversation, onclick, ...props}) => {
-    const { chat } = useStores();
+    //const { chat } = useStores();
 
-    let lastMessageText = '* no messages *    ';
+    let lastMessageText = '* no messages *';
     let sendTime = moment().format('HH:mm').toString();
 
     if (typeof conversation.lastMessage !== 'undefined'){
@@ -18,7 +18,7 @@ const ChatCard = ({conversation, onclick, ...props}) => {
     const unreadMessages = 0;
 
     return ( 
-        <div className={cl.chat_card} onClick={() => chat.openConversation(conversation)}>
+        <div className={cl.chat_card} onClick={onclick}>
             <div className={cl.avatar}></div>
             <div className={cl.text_area}>
                 <h3>{conversation.title}</h3>

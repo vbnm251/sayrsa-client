@@ -35,8 +35,13 @@ class LoginStore {
             this.setIsLoading(true);
             const responce = await AuthService.login(this.username, this.password);
             const data = responce.data;
+            
             rsaModlue.setPrivateKey(data.privateKey)
             informationService.updateToken(data.token)
+
+            console.log(data.token);
+
+            sessionStorage.setItem('username', this.username)
         } catch(e) {
             this.setError(e.message);
         } finally {

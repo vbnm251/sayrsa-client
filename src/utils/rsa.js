@@ -2,6 +2,10 @@ import { JSEncrypt } from "jsencrypt"
 
 class RsaMessages {
     constructor() {
+        this.crypt = new JSEncrypt()
+    }
+
+    generate() {
         // const privateKey = localStorage.getItem('privateKey')
         // if (privateKey) {
         //     this.crypt = new JSEncrypt()

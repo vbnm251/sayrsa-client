@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Message from './UI/Message/Message';
 import './../styles/chat.css'
 import MessageInput from './MessageInput';
@@ -10,7 +10,9 @@ import UserInfo from './UserInfo';
 const Chat = observer(() => {
     const { chat } = useStores();
 
-    console.log(chat.infoOpened);
+    const username = useMemo(() => {
+        return sessionStorage.getItem('username')
+    }, [])
 
     return ( 
         <div className='chat__wrapper'>
@@ -19,7 +21,7 @@ const Chat = observer(() => {
                 
                 <div className='messages_container'>
                     {chat.messages.map(message =>
-                        <Message message={message}/>
+                        <Message message={message} key={message.id} self={username === message.sender}/>
                     )}
                 </div>
                         
